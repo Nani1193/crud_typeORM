@@ -1,22 +1,22 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
-import { LineasPedido } from "../entities/LineaPedido";
+import { AppDataSource } from "../db";
+import { LineasPedido } from "../entities/LineasPedido";
 
-class LineaPedidoController {
-  private lineaPedidoRepository = getRepository(LineasPedido);
+class LineasPedidoController {
+  private lineasPedidoRepository = AppDataSource.getRepository(LineasPedido);
 
   async crearLineaPedido(req: Request, res: Response) {
     const { idProducto, cantidad, fechaEntrega, tipo } = req.body;
 
     try {
-      const lineaPedido = this.lineaPedidoRepository.create({
+      const lineaPedido = this.lineasPedidoRepository.create({
         idProducto,
         cantidad,
         fechaEntrega,
         tipo,
       });
 
-      await this.lineaPedidoRepository.save(lineaPedido);
+      await this.lineasPedidoRepository.save(lineaPedido);
 
       res.status(201).json({ mensaje: "Línea de pedido creada exitosamente", lineaPedido });
     } catch (error: any) {
@@ -26,7 +26,7 @@ class LineaPedidoController {
 
   async obtenerLineasPedido(req: Request, res: Response) {
     try {
-      const lineasPedido = await this.lineaPedidoRepository.find();
+      const lineasPedido = await this.lineasPedidoRepository.find();
       res.json(lineasPedido);
     } catch (error: any) {
       res.status(500).json({ mensaje: "Error al obtener las líneas de pedido", error: error.message });
@@ -36,4 +36,4 @@ class LineaPedidoController {
   // Otros métodos del controlador: obtener una línea de pedido por ID, actualizar una línea de pedido, eliminar una línea de pedido, etc.
 }
 
-export default LineaPedidoController;
+export default LineasPedidoController;

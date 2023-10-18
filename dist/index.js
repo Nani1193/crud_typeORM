@@ -29,3 +29,12 @@ function main() {
     });
 }
 main();
+// Patrón Controlador - Servicio - Repositorio
+// Controlador
+// Capa que se encarga de recibir peticiones HTTP y decidir las acciones a tomar
+// POST, GET, PUT, DELETE
+// C      R     U    D
+// Servicio
+// Capa que se encarga de ejecutar la lógica del negocio, llama a los repositorios
+// Repositorio
+// Contiene lógica para acceder a la base de datos

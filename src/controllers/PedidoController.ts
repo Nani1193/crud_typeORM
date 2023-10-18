@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
 import { Pedido } from "../entities/Pedido";
+import { AppDataSource } from "../db";
 
 class PedidoController {
-  private pedidoRepository = getRepository(Pedido);
+  private pedidoRepository = AppDataSource.getRepository(Pedido);
 
   async crearPedido(req: Request, res: Response) {
     const { numeroPedido, fechaPedido, estadoPedido, informacionAdicional } = req.body;
