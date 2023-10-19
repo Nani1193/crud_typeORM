@@ -1,6 +1,6 @@
 // routes/lineasPedido.ts
 import express from "express";
-import LineaPedidoController from "../controllers/LineaPedidoController";
+import LineaPedidoController from "../controllers/LineasPedidoController";
 
 const router = express.Router();
 const lineaPedidoController = new LineaPedidoController();

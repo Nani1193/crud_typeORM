@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { AppDataSource } from '../db';
 import { Entrega } from "../entities/Entrega";
 
 class EntregaController {
-  private entregaRepository = getRepository(Entrega);
+   entregaRepository = AppDataSource.getRepository(Entrega);
 
   async crearEntrega(req: Request, res: Response) {
     const { numeroGuiaTransporte, fechaDespacho, fechaEntrega, estadoEntrega, observaciones, idCliente, idPedido } = req.body;
@@ -37,8 +37,6 @@ class EntregaController {
       res.status(500).json({ mensaje: "Error al obtener las entregas", error: error.message });
     }
   }
-
-  // Otras funciones del controlador para obtener una entrega por ID, actualizar una entrega, etc.
 }
 
 export default EntregaController;

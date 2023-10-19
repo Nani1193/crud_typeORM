@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
 import { Producto } from "../entities/Producto";
+import { AppDataSource } from "../db";
 
 class ProductoController {
-  private productoRepository = getRepository(Producto);
+  private productoRepository = AppDataSource.getRepository(Producto);
 
   async crearProducto(req: Request, res: Response) {
     const { nombre, descripcion, informacionAdicional } = req.body;

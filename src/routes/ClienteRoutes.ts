@@ -6,7 +6,7 @@ const router = express.Router();
 const clienteController = new ClienteController();
 
 // Definir rutas para Clientes
-router.get("/", clienteController.obtenerClientes);
+router.get("/", clienteController.obtenerCliente);
 router.post("/", clienteController.crearCliente);
 
 export default router;
